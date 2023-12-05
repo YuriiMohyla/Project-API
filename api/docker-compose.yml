@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    volumes:
+      - "~/project:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: mogila
+      POSTGRES_PASSWORD: somepassword
+  api:
+    build:
+      context: .
+    container_name: api
+    ports:
+      - "8080:8080"
