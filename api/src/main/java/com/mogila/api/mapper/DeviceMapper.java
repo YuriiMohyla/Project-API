@@ -8,7 +8,10 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {
+        RepairMapper.class,
+        VerificationMapper.class
+})
 public interface DeviceMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "user", ignore = true)

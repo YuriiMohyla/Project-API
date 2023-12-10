@@ -26,7 +26,7 @@ public class DeviceService {
                         .map(device -> device.setUser(user))
                         .toList();
 
-        deviceRepository.deleteAllUsersDevices(user.getId());
+        deviceRepository.deleteAllByUserId(user.getId());
         deviceRepository.saveAll(modelDevices);
     }
 

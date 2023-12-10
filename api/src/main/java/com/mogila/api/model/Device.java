@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,13 +32,7 @@ public class Device {
     private String inventoryNumber;
 
     @Column(nullable = false)
-    private LocalDate dateOfLastVerification;
-
-    @Column(nullable = false)
     private Integer verificationPeriod;
-
-    @Column(nullable = false)
-    private LocalDate dateOfLastRepair;
 
     @Column(nullable = false)
     private String note;
@@ -45,4 +40,12 @@ public class Device {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "device_id")
+    private List<Verification> verifications;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "device_id")
+    private List<Repair> repairs;
 }

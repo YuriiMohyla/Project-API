@@ -8,8 +8,11 @@ spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/postgres
     username: postgres
-    password: root
+    password: somepassword
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
+
+server:
+  port: 8081

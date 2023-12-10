@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface DeviceRepository extends JpaRepository<Device, Long> {
     @Modifying
-    @Query("DELETE FROM Device WHERE user.id = :userId")
-    void deleteAllUsersDevices(@Param("userId") Long userId);
+    void deleteAllByUserId(Long userId);
 
     List<Device> findAllByUserLogin(String username);
 }

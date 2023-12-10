@@ -7,7 +7,7 @@ services:
     volumes:
       - "~/project:/var/lib/postgresql/data"
     environment:
-      POSTGRES_USER: mogila
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: somepassword
   api:
     build:

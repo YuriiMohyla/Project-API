@@ -1,12 +1,10 @@
 package com.mogila.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,13 +18,11 @@ public class DeviceDto {
     @NonNull
     private String inventoryNumber;
     @NonNull
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfLastVerification;
-    @NonNull
     private Integer verificationPeriod;
     @NonNull
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfLastRepair;
-    @NonNull
     private String note;
+    @NonNull
+    private List<VerificationDto> verifications;
+    @NonNull
+    private List<RepairDto> repairs;
 }
