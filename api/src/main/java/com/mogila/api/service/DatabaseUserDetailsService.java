@@ -1,6 +1,7 @@
 package com.mogila.api.service;
 
 import com.mogila.api.dto.ProductionDto;
+import com.mogila.api.dto.UserDto;
 import com.mogila.api.model.User;
 import com.mogila.api.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,13 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 
     public User findUserByLogin(@NonNull String username) {
         return userRepository.findByLogin(username)
+                .orElseThrow(() -> handleNotFound(username));
+    }
+
+    public UserDto findUserById(@NonNull String username) {
+        return userRepository.findByLogin(username)
+                .map(User::getId)
+                .map(UserDto::of)
                 .orElseThrow(() -> handleNotFound(username));
     }
 

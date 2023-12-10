@@ -14,4 +14,8 @@ services:
       context: .
     container_name: api
     ports:
-      - "8080:8080"
+      - "8081:8081"
+  telegram-bot:
+    build:
+      context: ./telegram-bot
+    container_name: telegram-bot

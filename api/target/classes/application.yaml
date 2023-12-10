@@ -14,5 +14,9 @@ spring:
     hibernate:
       ddl-auto: validate
 
+telegram:
+  bot:
+    url: http://telegram-bot:8082
+
 server:
   port: 8081

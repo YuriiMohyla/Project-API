@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Data
@@ -25,4 +27,12 @@ public class DeviceDto {
     private List<VerificationDto> verifications;
     @NonNull
     private List<RepairDto> repairs;
+
+    public LocalDate getLastVerification() {
+        return verifications.stream()
+                .max(Comparator.comparing(VerificationDto::getDateOfVerification))
+                .map(VerificationDto::getDateOfVerification)
+                .map(localDate -> localDate.plusMonths(verificationPeriod))
+                .get();
+    }
 }

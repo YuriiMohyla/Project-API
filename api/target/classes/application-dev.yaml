@@ -5,4 +5,8 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+
+telegram:
+  bot:
+    url: http://localhost:8082
