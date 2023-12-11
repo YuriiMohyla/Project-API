@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,11 +30,11 @@ public class DeviceDto {
     @NonNull
     private List<RepairDto> repairs;
 
-    public LocalDate getLastVerification() {
+    public ZonedDateTime getLastVerification() {
         return verifications.stream()
                 .max(Comparator.comparing(VerificationDto::getDateOfVerification))
                 .map(VerificationDto::getDateOfVerification)
-                .map(localDate -> localDate.plusMonths(verificationPeriod))
+                .map(localDate -> ZonedDateTime.now(ZoneOffset.UTC).with(localDate).plusMonths(verificationPeriod))
                 .get();
     }
 }

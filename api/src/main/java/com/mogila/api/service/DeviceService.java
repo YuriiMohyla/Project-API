@@ -1,8 +1,6 @@
 package com.mogila.api.service;
 
 import com.mogila.api.dto.DeviceDto;
-import com.mogila.api.dto.UserNotificationDto;
-import com.mogila.api.dto.VerificationDto;
 import com.mogila.api.mapper.DeviceMapper;
 import com.mogila.api.model.Device;
 import com.mogila.api.model.User;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,7 +43,7 @@ public class DeviceService {
     }
 
     private void publishNotification(List<DeviceDto> devices, User user) {
-        Map<String, LocalDate> lastVerification = devices.stream()
+        Map<String, ZonedDateTime> lastVerification = devices.stream()
                 .collect(Collectors.toMap(DeviceDto::getTitle, DeviceDto::getLastVerification));
 
         telegramBotService.publishNotification(lastVerification, user.getId());

@@ -1,10 +1,9 @@
 package com.mogila.api.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -13,5 +12,14 @@ public class UserNotificationDto {
     @NonNull
     private Long userId;
     @NonNull
-    private List<String> messages;
+    private List<Notification> messages;
+
+    @Data
+    @AllArgsConstructor(staticName = "of")
+    public static class Notification {
+        @NonNull
+        private String message;
+        @NonNull
+        private ZonedDateTime date;
+    }
 }
